@@ -1,0 +1,54 @@
+<html>
+<style>
+html, body {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: #efefef;
+}
+body {
+	font-size: 88px;
+	text-align: center;
+	word-wrap: break-word;
+	font-family: "Helvetica Neue", "Helvetica", sans-serif;
+}
+</style>
+<body>
+</body>
+<script>
+var timeout = null;
+
+function clearText()
+{
+	document.body.innerHTML = "";
+}
+
+function clearTextTimeout()
+{
+	clearTimeout(timeout);
+	timeout = setTimeout(clearText, 10 * 1000);
+}
+
+function playSound(char)
+{
+	if (char.match(/[a-z]|[0-9]/i))
+	{
+		var a = new Audio("./sounds/" + char.toLowerCase() + ".mp3");
+		a.play();
+	}
+	
+}
+document.body.addEventListener("keypress", function (evt) {
+	var c = String.fromCharCode(evt.charCode);
+	var t = document.createTextNode(c);
+	document.body.appendChild(t);
+	playSound(c)
+	clearTextTimeout();
+	evt.preventDefault();
+	evt.stopPropagation();
+	return false;
+})
+</script>
+</html>
