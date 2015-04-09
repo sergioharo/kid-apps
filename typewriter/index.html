@@ -56,10 +56,12 @@ function playSound(char)
 }
 
 document.body.addEventListener("touchstart", function (evt) {
-	//input.focus();
+	input.focus();
 	evt.preventDefault();
 	evt.stopPropagation();
-
+	setTimeout, function () {
+		document.body.scrollTop = 0;
+	}, 0);
 	return false;
 });
 
