@@ -1,6 +1,6 @@
 <html>
 <style>
-html, body {
+html, body, #container {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -8,21 +8,30 @@ html, body {
 	bottom: 0;
 	background: #efefef;
 }
-body {
+#container {
 	font-size: 88px;
 	text-align: center;
 	word-wrap: break-word;
 	font-family: "Helvetica Neue", "Helvetica", sans-serif;
 }
+input {
+	width: 0;
+	height: 0;
+	opacity: 0;
+}
 </style>
 <body>
+<input id="input"/>
+<div id="container"></div>
 </body>
 <script>
 var timeout = null;
+var input = document.getElementById("input");
+var container = document.getElementById("container");
 
 function clearText()
 {
-	document.body.innerHTML = "";
+	container.innerHTML = "";
 }
 
 function clearTextTimeout()
@@ -40,10 +49,13 @@ function playSound(char)
 	}
 	
 }
+
+input.focus();
+
 document.body.addEventListener("keypress", function (evt) {
 	var c = String.fromCharCode(evt.charCode);
 	var t = document.createTextNode(c);
-	document.body.appendChild(t);
+	container.appendChild(t);
 	playSound(c)
 	clearTextTimeout();
 	evt.preventDefault();
