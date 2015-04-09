@@ -50,7 +50,13 @@ function playSound(char)
 	
 }
 
-input.focus();
+document.body.addEventListener("touchstart", function (evt) {
+	input.focus();
+	evt.preventDefault();
+	evt.stopPropagation();
+	return false;
+});
+
 
 document.body.addEventListener("keypress", function (evt) {
 	var c = String.fromCharCode(evt.charCode);
